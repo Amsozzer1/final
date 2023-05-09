@@ -53,7 +53,7 @@ public class EmployeeGUI extends JFrame
     private JButton getEmpDataButton;
 
     //components for Dispaying Employee Data in p2
-    private JLabel lblTitle3;
+    
     private JLabel lblLname3;
     private JLabel lblFname3;
     private JLabel lblAddress13;
@@ -187,12 +187,7 @@ public class EmployeeGUI extends JFrame
         btnClear.setBounds(230, 360, 130, 25);
         panel1.add(btnClear);
        
-        /*
-        delEmButton = new JButton("Delete Employee");
-        delEmButton.addActionListener(new Delete());
-        delEmButton.setBounds(80, 400, 130, 25);
-        panel1.add(delEmButton);
-         */
+       
 
 
 
@@ -239,6 +234,7 @@ public class EmployeeGUI extends JFrame
         lblLname3.setBounds(100, 70, 100, 25);
         txtLname3.setBounds(200, 70, 100, 25);
         txtLname3.setVisible(false);
+        txtLname3.setEditable(false);
         panel2.add(lblLname3);
         panel2.add(txtLname3);
 
@@ -249,6 +245,7 @@ public class EmployeeGUI extends JFrame
         lblFname3.setBounds(100, 105, 100, 25);
         txtFname3.setBounds(200, 105, 100, 25);
         txtFname3.setVisible(false);
+        txtFname3.setEditable(false);
         panel2.add(lblFname3);
         panel2.add(txtFname3);
        
@@ -259,6 +256,7 @@ public class EmployeeGUI extends JFrame
         lblAddress13.setBounds(100, 140, 100, 25);
         txtAddress13.setBounds(200, 140, 100, 25);
         txtAddress13.setVisible(false);
+        txtAddress13.setEditable(false);
         panel2.add(lblAddress13);
         panel2.add(txtAddress13);
 
@@ -268,6 +266,7 @@ public class EmployeeGUI extends JFrame
         lblAddress23.setBounds(100, 175, 100, 25);
         txtAddress23.setBounds(200, 175, 100, 25);
         txtAddress23.setVisible(false);
+        txtAddress23.setEditable(false);
         panel2.add(lblAddress23);
         panel2.add(txtAddress23);
 
@@ -277,6 +276,7 @@ public class EmployeeGUI extends JFrame
         lblCity3.setBounds(100, 210, 100, 25);
         txtCity3.setBounds(200, 210, 100, 25);
         txtCity3.setVisible(false);
+        txtCity3.setEditable(false);
         panel2.add(lblCity3);
         panel2.add(txtCity3);
 
@@ -286,6 +286,7 @@ public class EmployeeGUI extends JFrame
         lblState3.setBounds(100, 245, 100, 25);
         txtState3.setBounds(200, 245, 100, 25);
         txtState3.setVisible(false);
+        txtState3.setEditable(false);
         panel2.add(lblState3);
         panel2.add(txtState3);
 
@@ -296,15 +297,16 @@ public class EmployeeGUI extends JFrame
         lblDOB3.setBounds(100, 280, 100, 25);
         txtDOB3.setBounds(200, 280, 100, 25);
         txtDOB3.setVisible(false);
+        txtDOB3.setEditable(false);
         panel2.add(lblDOB3);
         panel2.add(txtDOB3);
-
         lblSalary3 = new JLabel("");
         txtSalary3 = new JTextField(20);
         lblSalary3.setHorizontalAlignment(JLabel.RIGHT);
         lblSalary3.setBounds(100, 315, 100, 25);
         txtSalary3.setBounds(200, 315, 100, 25);
         txtSalary3.setVisible(false);
+        txtSalary3.setEditable(false);
         panel2.add(lblSalary3);
         panel2.add(txtSalary3);
 
