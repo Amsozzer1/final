@@ -13,9 +13,9 @@ public class Employee
 
     public Employee()
     {
-        
+       
     }
-    
+   
     public Employee(int id, String lname, String fname, String address1, String address2, String city, String state, String DOB, double salary)
     {
         this.id = id;
@@ -28,7 +28,7 @@ public class Employee
         this.DOB = DOB;
         this.salary = salary;
     }
-    
+   
     public Employee(String lname, String fname, String address1, String address2, String city, String state, String DOB, double salary)
     {
         this.lname = lname;
@@ -130,5 +130,5 @@ public class Employee
     {
         this.salary = salary;
     }
-    
+   
 }

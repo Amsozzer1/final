@@ -1,30 +1,38 @@
 package com.javafinal;
 import java.sql.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class EmployeeCRUD
 {
     static final String url ="jdbc:mysql://database-1.cidce3f747we.us-east-2.rds.amazonaws.com:3306/cis144final?user=amsozzer&password=Bluebash1.";
     static final String user = "amsozzer";
     static final String password = "Bluebash1.";
-    
+
+
+    static final String localURL = "jdbc:mysql://localhost:3306/cis144final";
+    static final String localuser = "root";
+    static final String localpass = "";
+   
+   
     private static String DELETE_EMPLOYEE_SQL = "DELETE FROM employee WHERE EmpID = ";
-    private static String EMPLOYEE_DATA_SQL = "select * from employee where EmpLname =  and EmpFname = ";
     private static String INSERT_EMPLOYEE_SQL = "insert into employee(EmpLname, EmpFname, EmpAddress1, "
             + "EmpAddress2, EmpCity, EMpState, EmpDOB, EmpBaseSalary) "
             + "values(?, ?, ?, ?, ?, ?, ?, ?)";
 
     public EmployeeCRUD()
     {
-        
+       
     }
-        
+       
     protected Connection getConnection()
     {
         Connection conn = null;
         try 
         {
-            conn = DriverManager.getConnection(url, user, password);
+            //conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(localURL, localuser, localpass);
+           
         }
         catch(SQLException ex)
         {
@@ -32,7 +40,7 @@ public class EmployeeCRUD
         }
         return conn;
     }
-    
+   
     public void insertEmployee(Employee employee)
     {
         try (Connection conn2 = this.getConnection();
@@ -53,8 +61,7 @@ public class EmployeeCRUD
             ex.printStackTrace();
         }
     }
-    
-    
+   
     public boolean deleteEmployee(String empID)
     {
         DELETE_EMPLOYEE_SQL += empID;
@@ -63,7 +70,7 @@ public class EmployeeCRUD
                 PreparedStatement ps = conn2.prepareStatement("DELETE FROM employee WHERE EmpID = "+ empID)
             )
         {
-            
+           
             rowDeleted = ps.executeUpdate() > 0;
         }
         catch(SQLException ex)
@@ -71,5 +78,33 @@ public class EmployeeCRUD
             ex.printStackTrace();
         }
         return rowDeleted;
+    }
+    public ArrayList<String> EmpData(String empID)
+    {
+        ArrayList<String> EmpDataList = new ArrayList<String>();
+        try (Connection conn3 = this.getConnection();
+        PreparedStatement ps2 = conn3.prepareStatement("select * from employee where EmpID =" + empID)
+    )
+    {
+        ResultSet rs = ps2.executeQuery();
+        while(rs.next())
+        {
+            EmpDataList.add(rs.getString("EmpLname"));
+            EmpDataList.add(rs.getString("EmpFname"));
+            EmpDataList.add(rs.getString("EmpAddress1"));
+            EmpDataList.add(rs.getString("EmpAddress2"));
+            EmpDataList.add(rs.getString("EmpCity"));
+            EmpDataList.add(rs.getString("EmpState"));
+            EmpDataList.add(rs.getString("EmpDOB"));
+            EmpDataList.add(rs.getString("EmpBaseSalary"));
+
+
+        }
+    }
+    catch(SQLException ex)
+    {
+        ex.printStackTrace();
+    }
+        return EmpDataList;
     }
 }
