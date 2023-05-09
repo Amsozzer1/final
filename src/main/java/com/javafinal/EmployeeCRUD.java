@@ -64,10 +64,9 @@ public class EmployeeCRUD
    
     public boolean deleteEmployee(String empID)
     {
-        DELETE_EMPLOYEE_SQL += empID;
         boolean rowDeleted = false;
         try (Connection conn2 = this.getConnection();
-                PreparedStatement ps = conn2.prepareStatement("DELETE FROM employee WHERE EmpID = "+ empID)
+                PreparedStatement ps = conn2.prepareStatement(DELETE_EMPLOYEE_SQL + empID)
             )
         {
            
