@@ -83,8 +83,7 @@ public class EmployeeCRUD
     {
         ArrayList<String> EmpDataList = new ArrayList<String>();
         try (Connection conn3 = this.getConnection();
-        PreparedStatement ps2 = conn3.prepareStatement("select * from employee where EmpID =" + empID)
-    )
+        PreparedStatement ps2 = conn3.prepareStatement("select * from employee where EmpID =" + empID))
     {
         ResultSet rs = ps2.executeQuery();
         while(rs.next())

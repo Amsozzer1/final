@@ -16,11 +16,11 @@ public class App
     public static void main(String[] args)
     {
         new EmployeeGUI();
-       /*
+       
         System.out.print("\033[32m");
         System.out.println("How u doin Luv?");
         System.out.print("\033[0m");
-        */
+        
        
        
     }
