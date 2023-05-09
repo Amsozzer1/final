@@ -225,8 +225,9 @@ public class EmployeeGUI extends JFrame
 
         delEmButton = new JButton("Delete Employee");
         delEmButton.addActionListener(new Delete());
-        delEmButton.setBounds(80, 400, 130, 25);
-        //panel2.add(delEmButton);
+        delEmButton.setBounds(150, 400, 200, 25);
+        delEmButton.setVisible(false);
+        panel2.add(delEmButton);
 
         //Display Employee Data
        
@@ -313,7 +314,7 @@ public class EmployeeGUI extends JFrame
 
 
 
-        getEmpDataButton = new JButton("Get Employee Data");
+        getEmpDataButton = new JButton("Search Employee");
         getEmpDataButton.addActionListener(new GetEmpData());
         getEmpDataButton.setBounds(150, 400, 200, 25);
         panel2.add(getEmpDataButton);
@@ -411,14 +412,21 @@ public class EmployeeGUI extends JFrame
         @Override
         public void actionPerformed(ActionEvent e)
         {
-           
-            // getting the employee id from the text field
-            //String empID = txtEmpID.getText();
-            //System.out.println("The ID is ==> "+empID);
 
             try
             {
-                crud.deleteEmployee("1");
+                crud.deleteEmployee(txtEmpIdp2.getText());
+                JOptionPane.showMessageDialog(null, "Employee Deleted");
+                txtLname3.setText("");
+                txtFname3.setText("");
+                txtAddress13.setText("");
+                txtAddress23.setText("");
+                txtCity3.setText("");
+                txtState3.setText("");
+                txtDOB3.setText("");
+                txtSalary3.setText("");
+
+
             }
             catch(Exception ex)
             {
@@ -433,49 +441,60 @@ public class EmployeeGUI extends JFrame
         public void actionPerformed(ActionEvent e)
         {
             String empID = txtEmpIdp2.getText();
-            System.out.println("The ID is ==> "+empID);
+            
             try
             {
                 ArrayList<String> empData = crud.EmpData(empID);
-                EmpIdp2.setVisible(false);
-                txtEmpIdp2.setVisible(false);
-                lblLname3.setText("Last Name: ");
-                txtLname3.setText(empData.get(0));
-
-                lblFname3.setText("First Name: ");
-                txtFname3.setText(empData.get(1));
-
-                lblAddress13.setText("Address 1: ");
-                txtAddress13.setText(empData.get(2));
-
-                lblAddress23.setText("Address 2: ");
-                txtAddress23.setText(empData.get(3));
-
-                lblCity3.setText("City: ");
-                txtCity3.setText(empData.get(4));
-
-                lblState3.setText("State: ");
-                txtState3.setText(empData.get(5));
-
-                lblDOB3.setText("DOB: ");
-                txtDOB3.setText(empData.get(6));
-
-                lblSalary3.setText("Salary: ");
-                txtSalary3.setText(empData.get(7));
-
-
-                
-                txtLname3.setVisible(true);
-                txtFname3.setVisible(true);
-                txtAddress23.setVisible(true);
-                txtAddress13.setVisible(true);
-                txtCity3.setVisible(true);
-                txtDOB3.setVisible(true);
-                txtState3.setVisible(true);
-                txtSalary3.setVisible(true);
-               
-
+                if(empData.size() > 0)
+                {
+                    EmpIdp2.setVisible(false);
+                    txtEmpIdp2.setVisible(false);
+                    lblLname3.setText("Last Name: ");
+                    txtLname3.setText(empData.get(0));
+    
+                    lblFname3.setText("First Name: ");
+                    txtFname3.setText(empData.get(1));
+    
+                    lblAddress13.setText("Address 1: ");
+                    txtAddress13.setText(empData.get(2));
+    
+                    lblAddress23.setText("Address 2: ");
+                    txtAddress23.setText(empData.get(3));
+    
+                    lblCity3.setText("City: ");
+                    txtCity3.setText(empData.get(4));
+    
+                    lblState3.setText("State: ");
+                    txtState3.setText(empData.get(5));
+    
+                    lblDOB3.setText("DOB: ");
+                    txtDOB3.setText(empData.get(6));
+    
+                    lblSalary3.setText("Salary: ");
+                    txtSalary3.setText(empData.get(7));
+    
+                    getEmpDataButton.setVisible(false);
+                    delEmButton.setVisible(true);
+    
+    
+                    
+                    txtLname3.setVisible(true);
+                    txtFname3.setVisible(true);
+                    txtAddress23.setVisible(true);
+                    txtAddress13.setVisible(true);
+                    txtCity3.setVisible(true);
+                    txtDOB3.setVisible(true);
+                    txtState3.setVisible(true);
+                    txtSalary3.setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Employee Not Found");
+                }
             }
+            
+
+            
             catch(Exception ex)
             {
                 System.out.println(ex.getMessage());
@@ -484,4 +503,4 @@ public class EmployeeGUI extends JFrame
         }
    
     }
-} 
+}
