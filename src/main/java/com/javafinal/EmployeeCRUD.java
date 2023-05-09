@@ -9,6 +9,7 @@ public class EmployeeCRUD
     static final String password = "Bluebash1.";
     
     private static String DELETE_EMPLOYEE_SQL = "DELETE FROM employee WHERE EmpID = ";
+    private static String EMPLOYEE_DATA_SQL = "select * from employee where EmpLname =  and EmpFname = ";
     private static String INSERT_EMPLOYEE_SQL = "insert into employee(EmpLname, EmpFname, EmpAddress1, "
             + "EmpAddress2, EmpCity, EMpState, EmpDOB, EmpBaseSalary) "
             + "values(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -52,6 +53,7 @@ public class EmployeeCRUD
             ex.printStackTrace();
         }
     }
+    
     
     public boolean deleteEmployee(String empID)
     {
