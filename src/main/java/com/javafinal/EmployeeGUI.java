@@ -100,14 +100,14 @@ public class EmployeeGUI extends JFrame
         panel1.add(lblTitle);
        
        
-                complete = new JLabel("");
-                complete.setHorizontalAlignment(JLabel.CENTER);
-                complete.setBounds(130, 45, 150, 25);
-                complete.setForeground(Color.red);
-               
-                panel1.add(complete);
+        // Complete Label for panel1 (INSERT)
+        complete = new JLabel("");
+        complete.setHorizontalAlignment(JLabel.CENTER);
+        complete.setBounds(130, 45, 150, 25);
+        complete.setForeground(Color.red);
+        panel1.add(complete);
 
-        //
+        
 
        
 
