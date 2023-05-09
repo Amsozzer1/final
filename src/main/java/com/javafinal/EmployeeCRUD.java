@@ -30,8 +30,8 @@ public class EmployeeCRUD
         Connection conn = null;
         try 
         {
-            //conn = DriverManager.getConnection(url, user, password);
-            conn = DriverManager.getConnection(localURL, localuser, localpass);
+            conn = DriverManager.getConnection(url, user, password);
+            //conn = DriverManager.getConnection(localURL, localuser, localpass);
            
         }
         catch(SQLException ex)

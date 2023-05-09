@@ -200,7 +200,7 @@ public class EmployeeGUI extends JFrame
         panel2 = new JPanel(null);
        
         panel2.setSize(400,480);
-        lblTitle2 = new JLabel("EMPLOYEE DELETE DATA");
+        lblTitle2 = new JLabel("EMPLOYEE DATA");
         lblTitle2.setFont(new Font("Verdana", Font.BOLD, 16));
         lblTitle2.setHorizontalAlignment(JLabel.CENTER);
         lblTitle2.setForeground(Color.BLUE);
@@ -237,6 +237,7 @@ public class EmployeeGUI extends JFrame
         lblLname3.setHorizontalAlignment(JLabel.RIGHT);
         lblLname3.setBounds(100, 70, 100, 25);
         txtLname3.setBounds(200, 70, 100, 25);
+        txtLname3.setVisible(false);
         panel2.add(lblLname3);
         panel2.add(txtLname3);
 
@@ -246,6 +247,7 @@ public class EmployeeGUI extends JFrame
         lblFname3.setHorizontalAlignment(JLabel.RIGHT);
         lblFname3.setBounds(100, 105, 100, 25);
         txtFname3.setBounds(200, 105, 100, 25);
+        txtFname3.setVisible(false);
         panel2.add(lblFname3);
         panel2.add(txtFname3);
        
@@ -255,47 +257,53 @@ public class EmployeeGUI extends JFrame
         lblAddress13.setHorizontalAlignment(JLabel.RIGHT);
         lblAddress13.setBounds(100, 140, 100, 25);
         txtAddress13.setBounds(200, 140, 100, 25);
+        txtAddress13.setVisible(false);
         panel2.add(lblAddress13);
         panel2.add(txtAddress13);
 
-        lblAddress23 = new JLabel("Address 2: ");
+        lblAddress23 = new JLabel("");
         txtAddress23 = new JTextField(20);
         lblAddress23.setHorizontalAlignment(JLabel.RIGHT);
         lblAddress23.setBounds(100, 175, 100, 25);
         txtAddress23.setBounds(200, 175, 100, 25);
+        txtAddress23.setVisible(false);
         panel2.add(lblAddress23);
         panel2.add(txtAddress23);
 
-        lblCity3 = new JLabel("City: ");
+        lblCity3 = new JLabel("");
         txtCity3 = new JTextField(20);
         lblCity3.setHorizontalAlignment(JLabel.RIGHT);
         lblCity3.setBounds(100, 210, 100, 25);
         txtCity3.setBounds(200, 210, 100, 25);
+        txtCity3.setVisible(false);
         panel2.add(lblCity3);
         panel2.add(txtCity3);
 
-        lblState3 = new JLabel("State: ");
+        lblState3 = new JLabel("");
         txtState3 = new JTextField(20);
         lblState3.setHorizontalAlignment(JLabel.RIGHT);
         lblState3.setBounds(100, 245, 100, 25);
         txtState3.setBounds(200, 245, 100, 25);
+        txtState3.setVisible(false);
         panel2.add(lblState3);
         panel2.add(txtState3);
 
        
-        lblDOB3 = new JLabel("DOB: ");
+        lblDOB3 = new JLabel("");
         txtDOB3 = new JTextField(20);
         lblDOB3.setHorizontalAlignment(JLabel.RIGHT);
         lblDOB3.setBounds(100, 280, 100, 25);
         txtDOB3.setBounds(200, 280, 100, 25);
+        txtDOB3.setVisible(false);
         panel2.add(lblDOB3);
         panel2.add(txtDOB3);
 
-        lblSalary3 = new JLabel("Salary: ");
+        lblSalary3 = new JLabel("");
         txtSalary3 = new JTextField(20);
         lblSalary3.setHorizontalAlignment(JLabel.RIGHT);
         lblSalary3.setBounds(100, 315, 100, 25);
         txtSalary3.setBounds(200, 315, 100, 25);
+        txtSalary3.setVisible(false);
         panel2.add(lblSalary3);
         panel2.add(txtSalary3);
 
@@ -454,6 +462,17 @@ public class EmployeeGUI extends JFrame
 
                 lblSalary3.setText("Salary: ");
                 txtSalary3.setText(empData.get(7));
+
+
+                
+                txtLname3.setVisible(true);
+                txtFname3.setVisible(true);
+                txtAddress23.setVisible(true);
+                txtAddress13.setVisible(true);
+                txtCity3.setVisible(true);
+                txtDOB3.setVisible(true);
+                txtState3.setVisible(true);
+                txtSalary3.setVisible(true);
                
 
             }
