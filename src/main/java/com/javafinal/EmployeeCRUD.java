@@ -19,6 +19,8 @@ public class EmployeeCRUD
     private static String INSERT_EMPLOYEE_SQL = "insert into employee(EmpLname, EmpFname, EmpAddress1, "
             + "EmpAddress2, EmpCity, EMpState, EmpDOB, EmpBaseSalary) "
             + "values(?, ?, ?, ?, ?, ?, ?, ?)";
+    private static String UPDATE_EMPLOYEE_SQL = "update employee set EmpLname = ?, EmpFname = ?, EmpAddress1 = ?, "
+            + "EmpAddress2 = ?, EmpCity = ?, EmpState = ?, EmpDOB = ?, EmpBaseSalary = ? where EmpID = ?";
 
     public EmployeeCRUD()
     {
@@ -104,5 +106,32 @@ public class EmployeeCRUD
         ex.printStackTrace();
     }
         return EmpDataList;
+    }
+    public void UpdatEmp(Employee emp)
+    {
+
+        try(Connection conn3 = this.getConnection();
+        PreparedStatement ps = conn3.prepareStatement(UPDATE_EMPLOYEE_SQL))
+        {
+            
+            
+            ps.setString(1, emp.getLname());
+            ps.setString(2, emp.getFname());
+            ps.setString(3, emp.getAddress1());
+            ps.setString(4, emp.getAddress2());
+            ps.setString(5, emp.getCity());
+            ps.setString(6, emp.getState());
+            ps.setString(7, emp.getDOB());
+            ps.setDouble(8, emp.getSalary());
+            ps.setInt(9, emp.getId());
+            
+
+            ps.executeUpdate();
+
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+        }
     }
 }

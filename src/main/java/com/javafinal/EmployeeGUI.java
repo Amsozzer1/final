@@ -51,9 +51,8 @@ public class EmployeeGUI extends JFrame
     private JTextField txtEmpIdp2;
     private JButton delEmButton;
     private JButton getEmpDataButton;
+    private JButton updateEmpButton;
 
-    //components for Dispaying Employee Data in p2
-    
     private JLabel lblLname3;
     private JLabel lblFname3;
     private JLabel lblAddress13;
@@ -73,6 +72,8 @@ public class EmployeeGUI extends JFrame
     private JTextField txtSalary3;
    
    
+
+
 
    
    
@@ -224,6 +225,11 @@ public class EmployeeGUI extends JFrame
         delEmButton.setVisible(false);
         panel2.add(delEmButton);
 
+        updateEmpButton = new JButton("Update Employee");
+        updateEmpButton.addActionListener(new Update());
+        updateEmpButton.setBounds(150, 350, 200, 25);
+        updateEmpButton.setVisible(false);
+        panel2.add(updateEmpButton);
         //Display Employee Data
        
        
@@ -234,18 +240,18 @@ public class EmployeeGUI extends JFrame
         lblLname3.setBounds(100, 70, 100, 25);
         txtLname3.setBounds(200, 70, 100, 25);
         txtLname3.setVisible(false);
-        txtLname3.setEditable(false);
+        //txtLname3.setEditable(false);
         panel2.add(lblLname3);
         panel2.add(txtLname3);
 
         lblFname3 = new JLabel("");
         txtFname3 = new JTextField(20);
-        txtLname3.setEditable(false);
+        //txtLname3.setEditable(false);
         lblFname3.setHorizontalAlignment(JLabel.RIGHT);
         lblFname3.setBounds(100, 105, 100, 25);
         txtFname3.setBounds(200, 105, 100, 25);
         txtFname3.setVisible(false);
-        txtFname3.setEditable(false);
+        //txtFname3.setEditable(false);
         panel2.add(lblFname3);
         panel2.add(txtFname3);
        
@@ -256,7 +262,7 @@ public class EmployeeGUI extends JFrame
         lblAddress13.setBounds(100, 140, 100, 25);
         txtAddress13.setBounds(200, 140, 100, 25);
         txtAddress13.setVisible(false);
-        txtAddress13.setEditable(false);
+        //txtAddress13.setEditable(false);
         panel2.add(lblAddress13);
         panel2.add(txtAddress13);
 
@@ -266,7 +272,7 @@ public class EmployeeGUI extends JFrame
         lblAddress23.setBounds(100, 175, 100, 25);
         txtAddress23.setBounds(200, 175, 100, 25);
         txtAddress23.setVisible(false);
-        txtAddress23.setEditable(false);
+        //txtAddress23.setEditable(false);
         panel2.add(lblAddress23);
         panel2.add(txtAddress23);
 
@@ -276,7 +282,7 @@ public class EmployeeGUI extends JFrame
         lblCity3.setBounds(100, 210, 100, 25);
         txtCity3.setBounds(200, 210, 100, 25);
         txtCity3.setVisible(false);
-        txtCity3.setEditable(false);
+        //txtCity3.setEditable(false);
         panel2.add(lblCity3);
         panel2.add(txtCity3);
 
@@ -286,7 +292,7 @@ public class EmployeeGUI extends JFrame
         lblState3.setBounds(100, 245, 100, 25);
         txtState3.setBounds(200, 245, 100, 25);
         txtState3.setVisible(false);
-        txtState3.setEditable(false);
+        //txtState3.setEditable(false);
         panel2.add(lblState3);
         panel2.add(txtState3);
 
@@ -306,7 +312,7 @@ public class EmployeeGUI extends JFrame
         lblSalary3.setBounds(100, 315, 100, 25);
         txtSalary3.setBounds(200, 315, 100, 25);
         txtSalary3.setVisible(false);
-        txtSalary3.setEditable(false);
+        //.setEditable(false);
         panel2.add(lblSalary3);
         panel2.add(txtSalary3);
 
@@ -325,7 +331,7 @@ public class EmployeeGUI extends JFrame
        
         tp.setBounds(0, 0, 400, 480);
         tp.addTab("Insert", panel1);
-        tp.addTab("Get Employee", panel2);
+        tp.addTab("Update Employee", panel2);
         this.add(tp);
         this.pack();
     }
@@ -417,16 +423,22 @@ public class EmployeeGUI extends JFrame
 
             try
             {
-                crud.deleteEmployee(txtEmpIdp2.getText());
-                JOptionPane.showMessageDialog(null, "Employee Deleted");
-                txtLname3.setText("");
-                txtFname3.setText("");
-                txtAddress13.setText("");
-                txtAddress23.setText("");
-                txtCity3.setText("");
-                txtState3.setText("");
-                txtDOB3.setText("");
-                txtSalary3.setText("");
+                int yesOrNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this employee?");
+                if(yesOrNo == 0)
+                {
+                    crud.deleteEmployee(txtEmpIdp2.getText());
+                    JOptionPane.showMessageDialog(null, "Employee Deleted");
+                    txtLname3.setText("");
+                    txtFname3.setText("");
+                    txtAddress13.setText("");
+                    txtAddress23.setText("");
+                    txtCity3.setText("");
+                    txtState3.setText("");
+                    txtDOB3.setText("");
+                    txtSalary3.setText("");
+
+                }
+                
 
 
             }
@@ -479,6 +491,7 @@ public class EmployeeGUI extends JFrame
                     delEmButton.setVisible(true);
     
     
+                    updateEmpButton.setVisible(true);
                     
                     txtLname3.setVisible(true);
                     txtFname3.setVisible(true);
@@ -504,5 +517,30 @@ public class EmployeeGUI extends JFrame
            
         }
    
+    }
+    private class Update implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           
+            Employee emp = new Employee();
+            emp.setId(Integer.parseInt(txtEmpIdp2.getText()));
+            emp.setLname(txtLname3.getText());
+            emp.setFname(txtFname3.getText());
+            emp.setAddress1(txtAddress13.getText());
+            emp.setAddress2(txtAddress23.getText());
+            emp.setCity(txtCity3.getText());
+            emp.setState(txtState3.getText());
+            emp.setDOB(txtDOB3.getText());
+            emp.setSalary(Double.parseDouble(txtSalary3.getText()));
+
+            EmployeeCRUD crud = new EmployeeCRUD();
+            crud.UpdatEmp(emp);
+            JOptionPane.showMessageDialog(null, "Employee Updated");
+
+
+        }
+        
     }
 }
