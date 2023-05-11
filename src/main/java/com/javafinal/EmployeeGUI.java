@@ -9,6 +9,9 @@ public class EmployeeGUI extends JFrame
 {
     public static final int width = 410;
     public static final int height = 510;
+
+    
+    //My Screen Size width = 1536, height = 960
    
     private Employee emp1;
     private EmployeeCRUD crud = new EmployeeCRUD();
@@ -86,6 +89,7 @@ public class EmployeeGUI extends JFrame
    
     private void createPanel()
     {
+        
         super.setLayout(null);
         tp = new JTabbedPane();
         panel1 = new JPanel(null);
