@@ -5,9 +5,7 @@ import java.util.ArrayList;
 
 public class EmployeeCRUD
 {
-    static final String url ="jdbc:mysql://database-1.cidce3f747we.us-east-2.rds.amazonaws.com:3306/cis144final?user=amsozzer&password=Bluebash1.";
-    static final String user = "amsozzer";
-    static final String password = "Bluebash1.";
+    
 
 
     static final String localURL = "jdbc:mysql://localhost:3306/cis144final";
@@ -32,8 +30,8 @@ public class EmployeeCRUD
         Connection conn = null;
         try 
         {
-            conn = DriverManager.getConnection(url, user, password);
-            //conn = DriverManager.getConnection(localURL, localuser, localpass);
+            //conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(localURL, localuser, localpass);
            
         }
         catch(SQLException ex)
