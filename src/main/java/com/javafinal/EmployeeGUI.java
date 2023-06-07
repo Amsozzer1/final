@@ -3,15 +3,11 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
-import java.util.ArrayList;
 
 public class EmployeeGUI extends JFrame
 {
     public static final int width = 410;
     public static final int height = 510;
-
-    
-    //My Screen Size width = 1536, height = 960
    
     private Employee emp1;
     private EmployeeCRUD crud = new EmployeeCRUD();
@@ -55,6 +51,7 @@ public class EmployeeGUI extends JFrame
     private JButton delEmButton;
     private JButton getEmpDataButton;
     private JButton updateEmpButton;
+    private JButton clearButtonp2;
 
     private JLabel lblLname3;
     private JLabel lblFname3;
@@ -77,7 +74,6 @@ public class EmployeeGUI extends JFrame
    
 
 
-
    
    
     public EmployeeGUI()
@@ -89,7 +85,6 @@ public class EmployeeGUI extends JFrame
    
     private void createPanel()
     {
-        
         super.setLayout(null);
         tp = new JTabbedPane();
         panel1 = new JPanel(null);
@@ -114,7 +109,6 @@ public class EmployeeGUI extends JFrame
         
 
        
-
 
 
         lblLname = new JLabel("Last Name: ");
@@ -186,14 +180,12 @@ public class EmployeeGUI extends JFrame
         btnSave.setBounds(80, 360, 130, 25);
         panel1.add(btnSave);
 
-
         btnClear = new JButton("Clear Employee");
         btnClear.addActionListener(new Clear());
         btnClear.setBounds(230, 360, 130, 25);
         panel1.add(btnClear);
        
        
-
 
 
         //setup panel2
@@ -206,7 +198,6 @@ public class EmployeeGUI extends JFrame
         lblTitle2.setForeground(Color.BLUE);
         lblTitle2.setBounds(80, 20, 220, 30);
         panel2.add(lblTitle2);
-
 
         EmpIdp2 = new JLabel("Employee ID: ");
         txtEmpIdp2 = new JTextField(20);
@@ -222,18 +213,7 @@ public class EmployeeGUI extends JFrame
 
        
 
-
-        delEmButton = new JButton("Delete Employee");
-        delEmButton.addActionListener(new Delete());
-        delEmButton.setBounds(150, 400, 200, 25);
-        delEmButton.setVisible(false);
-        panel2.add(delEmButton);
-
-        updateEmpButton = new JButton("Update Employee");
-        updateEmpButton.addActionListener(new Update());
-        updateEmpButton.setBounds(150, 350, 200, 25);
-        updateEmpButton.setVisible(false);
-        panel2.add(updateEmpButton);
+        
         //Display Employee Data
        
        
@@ -322,15 +302,30 @@ public class EmployeeGUI extends JFrame
 
 
 
+        delEmButton = new JButton("Delete Employee");
+        delEmButton.addActionListener(new Delete());
+        delEmButton.setBounds(150, 400, 200, 25);
+        delEmButton.setVisible(false);
+        panel2.add(delEmButton);
 
-
-
+        updateEmpButton = new JButton("Update Employee");
+        updateEmpButton.addActionListener(new Update());
+        updateEmpButton.setBounds(150, 350, 200, 25);
+        updateEmpButton.setVisible(false);
+        panel2.add(updateEmpButton);
 
         getEmpDataButton = new JButton("Search Employee");
         getEmpDataButton.addActionListener(new GetEmpData());
         getEmpDataButton.setBounds(150, 400, 200, 25);
         panel2.add(getEmpDataButton);
 
+        clearButtonp2 = new JButton("Clear");
+        clearButtonp2.addActionListener(new Clearp2());
+        clearButtonp2.setBounds(20, 350, 100, 25);
+        
+
+        clearButtonp2.setVisible(false);
+        panel2.add(clearButtonp2);
 
        
         tp.setBounds(0, 0, 400, 480);
@@ -444,7 +439,6 @@ public class EmployeeGUI extends JFrame
                 }
                 
 
-
             }
             catch(Exception ex)
             {
@@ -462,40 +456,42 @@ public class EmployeeGUI extends JFrame
             
             try
             {
-                ArrayList<String> empData = crud.EmpData(empID);
-                if(empData.size() > 0)
+                
+                Employee emp =  crud.EmpData1(empID);
+                if(emp.getLname()!= null)
                 {
                     EmpIdp2.setVisible(false);
                     txtEmpIdp2.setVisible(false);
                     lblLname3.setText("Last Name: ");
-                    txtLname3.setText(empData.get(0));
+                    txtLname3.setText(emp.getLname().toString());
     
                     lblFname3.setText("First Name: ");
-                    txtFname3.setText(empData.get(1));
+                    txtFname3.setText(emp.getFname().toString());
     
                     lblAddress13.setText("Address 1: ");
-                    txtAddress13.setText(empData.get(2));
+                    txtAddress13.setText(emp.getAddress1().toString());
     
                     lblAddress23.setText("Address 2: ");
-                    txtAddress23.setText(empData.get(3));
+                    txtAddress23.setText(emp.getAddress2().toString());
     
                     lblCity3.setText("City: ");
-                    txtCity3.setText(empData.get(4));
+                    txtCity3.setText(emp.getCity().toString());
     
                     lblState3.setText("State: ");
-                    txtState3.setText(empData.get(5));
+                    txtState3.setText(emp.getState().toString());
     
                     lblDOB3.setText("DOB: ");
-                    txtDOB3.setText(empData.get(6));
+                    txtDOB3.setText(emp.getDOB().toString());
     
                     lblSalary3.setText("Salary: ");
-                    txtSalary3.setText(empData.get(7));
+                    txtSalary3.setText(Double.toString(emp.getSalary()));
     
                     getEmpDataButton.setVisible(false);
                     delEmButton.setVisible(true);
     
     
                     updateEmpButton.setVisible(true);
+                    clearButtonp2.setVisible(true);
                     
                     txtLname3.setVisible(true);
                     txtFname3.setVisible(true);
@@ -543,8 +539,62 @@ public class EmployeeGUI extends JFrame
             crud.UpdatEmp(emp);
             JOptionPane.showMessageDialog(null, "Employee Updated");
 
-
         }
         
     }
+    private class Clearp2 implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            txtLname3.setVisible(false);
+            txtFname3.setVisible(false);
+            txtAddress23.setVisible(false);
+            txtAddress13.setVisible(false);
+            txtCity3.setVisible(false);
+            txtDOB3.setVisible(false);
+            txtState3.setVisible(false);
+            txtSalary3.setVisible(false);
+
+            lblLname3.setText("");
+            txtLname3.setText("");
+            
+            lblFname3.setText("");
+
+            txtFname3.setText("");
+
+            lblAddress13.setText("");
+
+            txtAddress13.setText("");
+
+            lblAddress23.setText("");
+
+            txtAddress23.setText("");
+
+            lblCity3.setText("");
+
+            txtCity3.setText("");
+
+            lblState3.setText("");
+
+            txtState3.setText("");
+
+            lblDOB3.setText("");
+
+            txtDOB3.setText("");
+
+            lblSalary3.setText("");
+
+            txtSalary3.setText("");
+
+            EmpIdp2.setVisible(true);
+            txtEmpIdp2.setVisible(true);
+            clearButtonp2.setVisible(false);
+            updateEmpButton.setVisible(false);
+            delEmButton.setVisible(false);
+            getEmpDataButton.setVisible(true);
+            
+        }
+    }
 }
+
