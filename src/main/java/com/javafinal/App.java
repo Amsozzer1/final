@@ -1,18 +1,14 @@
 package com.javafinal;
-
-
 /**
  *
  * @author Ahmed Sozzer
  */
-
 
  //Endpoint: database-1.cidce3f747we.us-east-2.rds.amazonaws.com
 public class App 
 {
    
    
-
 
    
     public static void main(String[] args)
