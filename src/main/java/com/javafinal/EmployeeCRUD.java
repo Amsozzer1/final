@@ -1,12 +1,10 @@
 package com.javafinal;
 import java.sql.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class EmployeeCRUD
 {
-    
-
+   
 
     static final String localURL = "jdbc:mysql://localhost:3306/cis144final";
     static final String localuser = "root";
@@ -78,32 +76,33 @@ public class EmployeeCRUD
         }
         return rowDeleted;
     }
-    public ArrayList<String> EmpData(String empID)
+    
+    public Employee EmpData1(String empID)
     {
-        ArrayList<String> EmpDataList = new ArrayList<String>();
+        Employee emp = new Employee();
         try (Connection conn3 = this.getConnection();
         PreparedStatement ps2 = conn3.prepareStatement("select * from employee where EmpID =" + empID))
     {
         ResultSet rs = ps2.executeQuery();
         while(rs.next())
         {
-            EmpDataList.add(rs.getString("EmpLname"));
-            EmpDataList.add(rs.getString("EmpFname"));
-            EmpDataList.add(rs.getString("EmpAddress1"));
-            EmpDataList.add(rs.getString("EmpAddress2"));
-            EmpDataList.add(rs.getString("EmpCity"));
-            EmpDataList.add(rs.getString("EmpState"));
-            EmpDataList.add(rs.getString("EmpDOB"));
-            EmpDataList.add(rs.getString("EmpBaseSalary"));
-
-
-        }
+            emp.setId(rs.getInt("EmpID"));
+            emp.setLname(rs.getString("EmpLname"));
+            emp.setFname(rs.getString("EmpFname"));
+            emp.setAddress1(rs.getString("EmpAddress1"));
+            emp.setAddress2(rs.getString("EmpAddress2"));
+            emp.setCity(rs.getString("EmpCity"));
+            emp.setState(rs.getString("EmpState"));
+            emp.setDOB(rs.getString("EmpDOB"));
+            emp.setSalary(rs.getDouble("EmpBaseSalary"));
     }
+    }
+    
     catch(SQLException ex)
     {
         ex.printStackTrace();
     }
-        return EmpDataList;
+        return emp;
     }
     public void UpdatEmp(Employee emp)
     {
